@@ -6,7 +6,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 1.2.2
+Version: 1.2.3
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -14,8 +14,12 @@ License: LGPLv2+
 Group: Development/Libraries
 BuildRequires: libvirt-devel >= 0.9.11
 BuildRequires: python-devel
+BuildRequires: python-nose
+BuildRequires: python-lxml
 %if %{with_python3}
 BuildRequires: python3-devel
+BuildRequires: python3-nose
+BuildRequires: python3-lxml
 %endif
 
 %if %{with_python3}
@@ -60,6 +64,12 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 
+%check
+%{__python} setup.py test
+%if %{with_python3}
+%{__python3} setup.py test
+%endif
+
 %files
 %defattr(-,root,root)
 %doc ChangeLog AUTHORS NEWS README COPYING COPYING.LESSER examples/
@@ -82,6 +92,10 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Mon Apr  7 2014 Daniel P. Berrange <berrange@redhat.com> - 1.2.3-1
+- Update to 1.2.3 release
+- Run tests during build
+
 * Mon Mar  3 2014 Daniel P. Berrange <berrange@redhat.com> - 1.2.2-1
 - Update to 1.2.2 release
 
