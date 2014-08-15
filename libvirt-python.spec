@@ -6,7 +6,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 1.2.6
+Version: 1.2.7
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -22,14 +22,6 @@ BuildRequires: python3-nose
 BuildRequires: python3-lxml
 %endif
 
-%if %{with_python3}
-%package -n libvirt-python3
-Summary: The libvirt virtualization API python3 binding
-Url: http://libvirt.org
-License: LGPLv2+
-Group: Development/Libraries
-%endif
-
 # Don't want provides for python shared objects
 %{?filter_provides_in: %filter_provides_in %{python_sitearch}/.*\.so}
 %{?filter_setup}
@@ -41,6 +33,12 @@ supplied by the libvirt library to use the virtualization capabilities
 of recent versions of Linux (and other OSes).
 
 %if %{with_python3}
+%package -n libvirt-python3
+Summary: The libvirt virtualization API python3 binding
+Url: http://libvirt.org
+License: LGPLv2+
+Group: Development/Libraries
+
 %description -n libvirt-python3
 The libvirt-python package contains a module that permits applications
 written in the Python programming language to use the interface
@@ -92,6 +90,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Fri Aug 15 2014 Cole Robinson <crobinso@redhat.com> - 1.2.7-1
+- Rebased to version 1.2.7
+
 * Wed Jul  2 2014 Daniel P. Berrange <berrange@redhat.com> - 1.2.6-1
 - Update to 1.2.6 release
 
