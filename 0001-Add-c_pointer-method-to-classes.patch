@@ -1,0 +1,94 @@
+From e3da7ade421a1fbb5f1789dea9903a3ae6243ced Mon Sep 17 00:00:00 2001
+From: "Richard W.M. Jones" <rjones@redhat.com>
+Date: Thu, 11 Dec 2014 11:16:12 +0000
+Subject: [PATCH] Add c_pointer method to classes.
+
+This returns the raw C pointer to the underlying object, eg:
+
+  conn = libvirt.open(None)
+  print "0x%x" % conn.c_pointer()   # returns virConnectPtr of the connection
+  dom = conn.lookupByName("test")
+  print "0x%x" % dom.c_pointer()    # returns virDomainPtr of the domain
+
+The reason behind this is to allow us to transparently pass Python dom
+objects through the libguestfs Python API.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1075164
+---
+ generator.py  | 32 ++++++++++++++++++++++++++++++++
+ sanitytest.py |  2 ++
+ 2 files changed, 34 insertions(+)
+
+diff --git a/generator.py b/generator.py
+index 20df54f..cf044c9 100755
+--- a/generator.py
++++ b/generator.py
+@@ -821,6 +821,27 @@ def print_function_wrapper(module, name, output, export, include):
+             return 0
+     return 1
+ 
++def print_c_pointer(classname, output, export, include):
++    output.write("PyObject *\n")
++    output.write("libvirt_%s_pointer(PyObject *self ATTRIBUTE_UNUSED, PyObject *args)\n" % classname)
++    output.write("{\n")
++    output.write("    %sPtr ptr;\n" % classname)
++    output.write("    PyObject *pyptr;\n")
++    output.write("    PyObject *pylong;\n")
++    output.write("\n")
++    output.write("    if (!PyArg_ParseTuple(args, (char *) \"O\", &pyptr))\n")
++    output.write("        return NULL;\n")
++    output.write("    ptr = (%sPtr) Py%s_Get(pyptr);\n" % (classname, classname))
++    output.write("    pylong = PyLong_FromVoidPtr(ptr);\n")
++    output.write("    return pylong;\n")
++    output.write("}\n")
++    output.write("\n")
++
++    include.write("PyObject *libvirt_%s_pointer(PyObject *self, PyObject *args);\n" % classname)
++
++    export.write("    { (char *)\"%s_pointer\", libvirt_%s_pointer, METH_VARARGS, NULL },\n" %
++                 (classname, classname))
++
+ def buildStubs(module, api_xml):
+     global py_types
+     global py_return_types
+@@ -917,6 +938,12 @@ def buildStubs(module, api_xml):
+             del funcs[function]
+         if ret == 1:
+             nb_wrap = nb_wrap + 1
++
++    if module == "libvirt":
++        # Write C pointer conversion functions.
++        for classname in primary_classes:
++            print_c_pointer(classname, wrapper, export, include)
++
+     include.close()
+     export.close()
+     wrapper.close()
+@@ -1496,6 +1523,11 @@ def buildWrappers(module):
+                 classes.write("    def domain(self):\n")
+                 classes.write("        return self._dom\n\n")
+ 
++            classes.write("    def c_pointer(self):\n")
++            classes.write("        \"\"\"Get C pointer to underlying object\"\"\"\n")
++            classes.write("        return libvirtmod.%s_pointer(self._o)\n\n" %
++                          classname)
++
+             flist = function_classes[classname]
+             flist.sort(key=functionSortKey)
+             oldfile = ""
+diff --git a/sanitytest.py b/sanitytest.py
+index f5337fc..9907f3d 100644
+--- a/sanitytest.py
++++ b/sanitytest.py
+@@ -109,6 +109,8 @@ for klassname in gottypes:
+     for name in dir(klassobj):
+         if name[0] == '_':
+             continue
++        if name == 'c_pointer':
++            continue
+         thing = getattr(klassobj, name)
+         if callable(thing):
+             gotfunctions[klassname].append(name)
+-- 
+2.1.0
+
