@@ -6,11 +6,9 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 1.2.10
-Release: 2%{?dist}%{?extra_release}
+Version: 1.2.11
+Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
-# Upstream patch to add .c_pointer() method to classes.
-Patch1: 0001-Add-c_pointer-method-to-classes.patch
 Url: http://libvirt.org
 License: LGPLv2+
 Group: Development/Libraries
@@ -50,8 +48,6 @@ of recent versions of Linux (and other OSes).
 
 %prep
 %setup -q
-
-%patch1 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -94,6 +90,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Mon Dec 15 2014 Daniel P. Berrange <berrange@redhat.com> - 1.2.11-1
+- Update to v1.2.11 release
+
 * Fri Dec 12 2014 Richard W.M. Jones <rjones@redhat.com> - 1.2.10-2
 - Include upstream patch to add .c_pointer() method to classes.
 
