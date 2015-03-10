@@ -1,0 +1,36 @@
+From: Pavel Hrdina <phrdina@redhat.com>
+Date: Wed, 22 Oct 2014 11:10:54 +0200
+Subject: [PATCH python] flags cannot get right value for blockCopy function
+
+When use blockCopy, flags cannot get a right value, because
+PyArg_ParseTuple want to get 6 parameters and blockCopy only
+pass 5. Flags will get a unpredictable value, this will make
+the function fail with error:
+
+unsupported flags (0x7f6c) in function qemuDomainBlockCopy
+
+Signed-off-by: Luyao Huang <lhuang@redhat.com>
+(cherry picked from commit a7303a56b5e55c29cb5336c84a89b8347a355770)
+
+Conflicts:
+	libvirt-override.c
+---
+ libvirt-override.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/libvirt-override.c b/libvirt-override.c
+index 8b3c503..394ccf6 100644
+--- a/libvirt-override.c
++++ b/libvirt-override.c
+@@ -8172,9 +8172,8 @@ libvirt_virDomainBlockCopy(PyObject *self ATTRIBUTE_UNUSED, PyObject *args)
+     unsigned int flags;
+     int c_retval;
+ 
+-    if (!PyArg_ParseTuple(args, (char *) "Ozz|Oi:virDomainBlockCopy",
+-                          &pyobj_dom, &disk, &destxml, &pyobj_dict, &params,
+-                          &flags))
++    if (!PyArg_ParseTuple(args, (char *) "Ozz|OI:virDomainBlockCopy",
++                          &pyobj_dom, &disk, &destxml, &pyobj_dict, &flags))
+         return VIR_PY_INT_FAIL;
+ 
+     if (PyDict_Check(pyobj_dict)) {

@@ -7,8 +7,11 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 1.2.9
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
+
+# Fix virDomainBlockCopy (bz #1199682)
+Patch0001: 0001-flags-cannot-get-right-value-for-blockCopy-function.patch
 Url: http://libvirt.org
 License: LGPLv2+
 Group: Development/Libraries
@@ -48,6 +51,9 @@ of recent versions of Linux (and other OSes).
 
 %prep
 %setup -q
+
+# Fix virDomainBlockCopy (bz #1199682)
+%patch0001 -p1
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -90,6 +96,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Tue Mar 10 2015 Cole Robinson <crobinso@redhat.com> - 1.2.9-2
+- Fix virDomainBlockCopy (bz #1199682)
+
 * Wed Oct  1 2014 Daniel P. Berrange <berrange@redhat.com> - 1.2.9-1
 - Update to 1.2.9 release
 
