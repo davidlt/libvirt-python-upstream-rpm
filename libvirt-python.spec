@@ -7,7 +7,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 1.2.20
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -55,12 +55,15 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
 CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
+find examples -type f -exec chmod 0644 \{\} \;
+
 %install
 %{__python} setup.py install --skip-build --root=%{buildroot}
 %if %{with_python3}
 %{__python3} setup.py install --skip-build --root=%{buildroot}
 %endif
 rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
+
 
 %check
 %{__python} setup.py test
@@ -90,6 +93,11 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Tue Nov  3 2015 Toshio Kuratomi <toshio@fedoraproject.org> - 1.2.20-2
+- Remove executable bit on documentation so it doesn't pull in extra
+  dependencies.  This satisfies guidelines and fixes the problem of
+  the libvirt-python3 package requiring python2.
+
 * Fri Oct 02 2015 Daniel P. Berrange <berrange@redhat.com> - 1.2.20-1
 - Update to 1.2.20 release
 
