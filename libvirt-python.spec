@@ -7,7 +7,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 1.2.20
-Release: 2%{?dist}%{?extra_release}
+Release: 3%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -93,6 +93,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Tue Nov 10 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.20-3
+- Rebuilt for https://fedoraproject.org/wiki/Changes/python3.5
+
 * Tue Nov  3 2015 Toshio Kuratomi <toshio@fedoraproject.org> - 1.2.20-2
 - Remove executable bit on documentation so it doesn't pull in extra
   dependencies.  This satisfies guidelines and fixes the problem of
