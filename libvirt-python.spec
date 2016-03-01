@@ -7,12 +7,12 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 1.3.2
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
 Group: Development/Libraries
-BuildRequires: libvirt-devel >= 0.9.11
+BuildRequires: libvirt-devel >= %{version}
 BuildRequires: python-devel
 BuildRequires: python-nose
 BuildRequires: python-lxml
@@ -93,6 +93,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Tue Mar  1 2016 Daniel P. Berrange <berrange@redhat.com> - 1.3.2-2
+- Ensure we build against new enough libvirt
+
 * Tue Mar  1 2016 Daniel P. Berrange <berrange@redhat.com> - 1.3.2-1
 - Update to 1.3.2 release
 
