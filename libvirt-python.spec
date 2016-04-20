@@ -7,7 +7,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 1.3.3
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -48,6 +48,8 @@ of recent versions of Linux (and other OSes).
 
 %prep
 %setup -q
+
+find examples -type f -exec chmod 0644 \{\} \;
 
 %build
 CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
@@ -90,6 +92,11 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Wed Apr 20 2016 Toshio Kuratomi <toshio@fedoraproject.org> - 1.3.3-2
+- Restore the setting of documentation to be non-executable.  Executable
+  documentation introduces spurious dependencies (in this case, making
+  the python3 package depend on python2).
+
 * Thu Apr 07 2016 Cole Robinson <crobinso@redhat.com> - 1.3.3-1
 - Rebased to version 1.3.3
 
