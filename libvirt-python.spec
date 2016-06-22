@@ -7,8 +7,11 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 1.3.3
-Release: 2%{?dist}%{?extra_release}
+Release: 3%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
+
+# Fix crash in getAllDomainStats (bz #1339535)
+Patch0001: 0001-fix-crash-in-getAllDomainStats.patch
 Url: http://libvirt.org
 License: LGPLv2+
 Group: Development/Libraries
@@ -48,6 +51,9 @@ of recent versions of Linux (and other OSes).
 
 %prep
 %setup -q
+
+# Fix crash in getAllDomainStats (bz #1339535)
+%patch0001 -p1
 
 find examples -type f -exec chmod 0644 \{\} \;
 
@@ -92,6 +98,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Tue Jun 21 2016 Cole Robinson <crobinso@redhat.com> - 1.3.3-3
+- Fix crash in getAllDomainStats (bz #1339535)
+
 * Wed Apr 20 2016 Toshio Kuratomi <toshio@fedoraproject.org> - 1.3.3-2
 - Restore the setting of documentation to be non-executable.  Executable
   documentation introduces spurious dependencies (in this case, making
