@@ -6,7 +6,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 2.3.0
+Version: 2.4.0
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -95,6 +95,9 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %endif
 
 %changelog
+* Wed Nov  2 2016 Daniel P. Berrange <berrange@redhat.com> - 2.4.0-1
+- Update to 2.4.0 release
+
 * Thu Oct  6 2016 Daniel P. Berrange <berrange@redhat.com> - 2.3.0-1
 - Update to 2.3.0 release
 
