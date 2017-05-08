@@ -6,7 +6,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 3.2.0
+Version: 3.3.0
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -86,15 +86,20 @@ rm -f %{buildroot}%{_libdir}/python*/site-packages/*egg-info
 %defattr(-,root,root)
 %doc ChangeLog AUTHORS NEWS README COPYING COPYING.LESSER examples/
 %{_libdir}/python3*/site-packages/libvirt.py*
+%{_libdir}/python3*/site-packages/libvirtaio.py*
 %{_libdir}/python3*/site-packages/libvirt_qemu.py*
 %{_libdir}/python3*/site-packages/libvirt_lxc.py*
 %{_libdir}/python3*/site-packages/__pycache__/libvirt.cpython-*.py*
 %{_libdir}/python3*/site-packages/__pycache__/libvirt_qemu.cpython-*.py*
 %{_libdir}/python3*/site-packages/__pycache__/libvirt_lxc.cpython-*.py*
+%{_libdir}/python3*/site-packages/__pycache__/libvirtaio.cpython-*.py*
 %{_libdir}/python3*/site-packages/libvirtmod*
 %endif
 
 %changelog
+* Mon May  8 2017 Daniel P. Berrange <berrange@redhat.com> - 3.3.0-1
+- Update to 3.3.0 release
+
 * Mon Apr  3 2017 Daniel P. Berrange <berrange@redhat.com> - 3.2.0-1
 - Update to 3.2.0 release
 
