@@ -7,7 +7,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 3.5.0
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -98,6 +98,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Fri Jul 07 2017 Igor Gnatenko <ignatenko@redhat.com> - 3.5.0-2
+- Rebuild due to bug in RPM (RHBZ #1468476)
+
 * Thu Jul  6 2017 Daniel P. Berrange <berrange@redhat.com> - 3.5.0-1
 - Update to 3.5.0 release
 
