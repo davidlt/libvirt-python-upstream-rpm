@@ -7,7 +7,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 3.5.0
-Release: 3%{?dist}%{?extra_release}
+Release: 4%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -98,6 +98,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
