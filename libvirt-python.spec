@@ -6,8 +6,8 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 3.6.0
-Release: 2%{?dist}%{?extra_release}
+Version: 3.7.0
+Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -116,6 +116,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Mon Sep  4 2017 Daniel P. Berrange <berrange@redhat.com> - 3.7.0-1
+- Update to 3.7.0 release
+
 * Fri Aug 11 2017 Daniel P. Berrange <berrange@redhat.com> - 3.6.0-2
 - Rename sub-RPMs to python2-libvirt & python3-libvirt
 - Re-add py3 conditionals for benefit of RHEL/CentOS builds
