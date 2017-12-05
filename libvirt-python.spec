@@ -6,7 +6,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 3.9.0
+Version: 3.10.0
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -116,6 +116,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Tue Dec  5 2017 Daniel P. Berrange <berrange@redhat.com> - 3.10.0-1
+- Update to 3.10.0 release
+
 * Fri Nov  3 2017 Daniel P. Berrange <berrange@redhat.com> - 3.9.0-1
 - Update to 3.9.0 release
 
