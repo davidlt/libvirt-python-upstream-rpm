@@ -33,7 +33,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 4.2.0
+Version: 4.3.0
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -171,6 +171,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Thu May  3 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.3.0-1
+- Update to 4.3.0 release
+
 * Tue Apr  3 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.2.0-1
 - Update to 4.2.0 release
 - Set python2 to be disabled from Fedora 30 onwards
