@@ -34,7 +34,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 4.3.0
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -59,7 +59,7 @@ BuildRequires: python3-lxml
 
 # Don't want provides for python shared objects
 %if %{with_python2}
-%{?filter_provides_in: %filter_provides_in %{python_sitearch}/.*\.so}
+%{?filter_provides_in: %filter_provides_in %{python2_sitearch}/.*\.so}
 %endif
 %if %{with_python3}
 %{?filter_provides_in: %filter_provides_in %{python3_sitearch}/.*\.so}
@@ -121,7 +121,7 @@ exit 1
 %endif
 
 %if %{with_python2}
-CFLAGS="$RPM_OPT_FLAGS" %{__python} setup.py build
+CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
 %endif
 %if %{with_python3}
 CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
@@ -129,7 +129,7 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 
 %install
 %if %{with_python2}
-%{__python} setup.py install --skip-build --root=%{buildroot}
+%{__python2} setup.py install --skip-build --root=%{buildroot}
 %endif
 %if %{with_python3}
 %{__python3} setup.py install --skip-build --root=%{buildroot}
@@ -137,7 +137,7 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 
 %check
 %if %{with_python2}
-%{__python} setup.py test
+%{__python2} setup.py test
 %endif
 %if %{with_python3}
 %{__python3} setup.py test
@@ -147,11 +147,11 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %files -n python2-libvirt
 %defattr(-,root,root)
 %doc ChangeLog AUTHORS NEWS README COPYING COPYING.LESSER examples/
-%{python_sitearch}/libvirt.py*
-%{python_sitearch}/libvirt_qemu.py*
-%{python_sitearch}/libvirt_lxc.py*
-%{python_sitearch}/libvirtmod*
-%{python_sitearch}/*egg-info
+%{python2_sitearch}/libvirt.py*
+%{python2_sitearch}/libvirt_qemu.py*
+%{python2_sitearch}/libvirt_lxc.py*
+%{python2_sitearch}/libvirtmod*
+%{python2_sitearch}/*egg-info
 %endif
 
 %if %{with_python3}
@@ -171,6 +171,10 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Sat May 05 2018 Miro Hrončok <mhroncok@redhat.com> - 4.3.0-2
+- Update Python macros to new packaging standards
+  (See https://fedoraproject.org/wiki/Changes/Avoid_usr_bin_python_in_RPM_Build)
+
 * Thu May  3 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.3.0-1
 - Update to 4.3.0 release
 
