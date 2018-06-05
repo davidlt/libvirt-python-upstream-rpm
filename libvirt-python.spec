@@ -33,8 +33,8 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 4.3.0
-Release: 2%{?dist}%{?extra_release}
+Version: 4.4.0
+Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -171,6 +171,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Tue Jun  5 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.4.0-1
+- Update to 4.4.0 release
+
 * Sat May 05 2018 Miro Hrončok <mhroncok@redhat.com> - 4.3.0-2
 - Update Python macros to new packaging standards
   (See https://fedoraproject.org/wiki/Changes/Avoid_usr_bin_python_in_RPM_Build)
