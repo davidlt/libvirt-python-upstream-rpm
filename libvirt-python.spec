@@ -36,6 +36,7 @@ Name: libvirt-python
 Version: 4.4.0
 Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
+Patch0: 0001-Fix-syntax-error-on-Python-3.7.patch
 Url: http://libvirt.org
 License: LGPLv2+
 Group: Development/Libraries
@@ -107,7 +108,7 @@ of recent versions of Linux (and other OSes).
 %endif
 
 %prep
-%setup -q
+%autosetup -p1
 
 # Unset execute bit for example scripts; it can introduce spurious
 # RPM dependencies, like /usr/bin/python which can pull in python2
