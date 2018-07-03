@@ -36,7 +36,6 @@ Name: libvirt-python
 Version: 4.5.0
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
-Patch0: 0001-Fix-syntax-error-on-Python-3.7.patch
 Url: http://libvirt.org
 License: LGPLv2+
 Group: Development/Libraries
