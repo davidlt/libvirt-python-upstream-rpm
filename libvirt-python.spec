@@ -33,8 +33,8 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 4.4.0
-Release: 2%{?dist}%{?extra_release}
+Version: 4.5.0
+Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Patch0: 0001-Fix-syntax-error-on-Python-3.7.patch
 Url: http://libvirt.org
@@ -172,6 +172,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Tue Jul  3 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.5.0-1
+- Update to 4.5.0 release
+
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 4.4.0-2
 - Rebuilt for Python 3.7
 
