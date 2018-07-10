@@ -145,7 +145,6 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 
 %if %{with_python2}
 %files -n python2-libvirt
-%defattr(-,root,root)
 %doc ChangeLog AUTHORS NEWS README COPYING COPYING.LESSER examples/
 %{python2_sitearch}/libvirt.py*
 %{python2_sitearch}/libvirt_qemu.py*
@@ -156,7 +155,6 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 
 %if %{with_python3}
 %files -n python3-libvirt
-%defattr(-,root,root)
 %doc ChangeLog AUTHORS NEWS README COPYING COPYING.LESSER examples/
 %{python3_sitearch}/libvirt.py*
 %{python3_sitearch}/libvirtaio.py*
