@@ -34,7 +34,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 4.5.0
-Release: 2%{?dist}%{?extra_release}
+Release: 3%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -56,6 +56,7 @@ BuildRequires: python3-devel
 BuildRequires: python3-nose
 BuildRequires: python3-lxml
 %endif
+BuildRequires: gcc
 
 # Don't want provides for python shared objects
 %if %{with_python2}
@@ -169,6 +170,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Mon Jul 23 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.5.0-3
+- Add BR on gcc
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 4.5.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
