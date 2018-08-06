@@ -3,8 +3,8 @@
 # This spec file assumes you are building on a Fedora or RHEL version
 # that's still supported by the vendor. It may work on other distros
 # or versions, but no effort will be made to ensure that going forward
-%define min_rhel 6
-%define min_fedora 25
+%define min_rhel 7
+%define min_fedora 27
 
 %if (0%{?fedora} && 0%{?fedora} >= %{min_fedora}) || (0%{?rhel} && 0%{?rhel} >= %{min_rhel})
     %define supported_platform 1
@@ -33,12 +33,11 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 4.5.0
-Release: 3%{?dist}%{?extra_release}
+Version: 4.6.0
+Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
-Group: Development/Libraries
 BuildRequires: libvirt-devel == %{version}
 %if %{with_python2}
 %if %{py2_versioned_deps}
@@ -78,7 +77,6 @@ of recent versions of Linux (and other OSes).
 Summary: The libvirt virtualization API python2 binding
 Url: http://libvirt.org
 License: LGPLv2+
-Group: Development/Libraries
 %{?python_provide:%python_provide python2-libvirt}
 Provides: libvirt-python = %{version}-%{release}
 Obsoletes: libvirt-python <= 3.6.0-1%{?dist}
@@ -95,7 +93,6 @@ of recent versions of Linux (and other OSes).
 Summary: The libvirt virtualization API python3 binding
 Url: http://libvirt.org
 License: LGPLv2+
-Group: Development/Libraries
 %{?python_provide:%python_provide python3-libvirt}
 Provides: libvirt-python3 = %{version}-%{release}
 Obsoletes: libvirt-python3 <= 3.6.0-1%{?dist}
@@ -108,7 +105,7 @@ of recent versions of Linux (and other OSes).
 %endif
 
 %prep
-%autosetup -p1
+%setup -q
 
 # Unset execute bit for example scripts; it can introduce spurious
 # RPM dependencies, like /usr/bin/python which can pull in python2
@@ -170,6 +167,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Mon Aug  6 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.6.0-1
+- Update to 4.6.0 release
+
 * Mon Jul 23 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.5.0-3
 - Add BR on gcc
 
