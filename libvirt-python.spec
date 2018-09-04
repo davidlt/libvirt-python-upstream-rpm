@@ -13,7 +13,7 @@
 %endif
 
 %define _with_python2 1
-%if 0%{?fedora} > 29 || 0%{?rhel} > 7
+%if 0%{?fedora} > 30 || 0%{?rhel} > 7
 %define _with_python2 0
 %endif
 
@@ -34,7 +34,7 @@
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
 Version: 4.7.0
-Release: 1%{?dist}%{?extra_release}
+Release: 2%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -167,6 +167,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Tue Sep  4 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.7.0-2
+- Postpone python2 disablement to Fedora 31
+
 * Tue Sep  4 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.7.0-1
 - Update to 4.7.0 release
 
