@@ -33,8 +33,8 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 4.8.0
-Release: 2%{?dist}%{?extra_release}
+Version: 4.9.0
+Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -167,6 +167,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Mon Nov 12 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.9.0-1
+- Update to 4.9.0 release
+
 * Fri Oct  5 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.8.0-2
 - Update to 4.8.0 release
 
