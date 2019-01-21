@@ -33,7 +33,7 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 4.10.0
+Version: 5.0.0
 Release: 1%{?dist}%{?extra_release}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
@@ -167,6 +167,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %endif
 
 %changelog
+* Mon Jan 21 2019 Daniel P. Berrangé <berrange@redhat.com> - 5.0.0-1
+- Update to 5.0.0 release
+
 * Mon Nov 12 2018 Daniel P. Berrangé <berrange@redhat.com> - 4.9.0-1
 - Update to 4.9.0 release
 
@@ -216,53 +219,3 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 
 * Fri Jan 19 2018 Daniel P. Berrange <berrange@redhat.com> - 4.0.0-1
 - Update to 4.0.0 release
-
-* Tue Dec  5 2017 Daniel P. Berrange <berrange@redhat.com> - 3.10.0-1
-- Update to 3.10.0 release
-
-* Fri Nov  3 2017 Daniel P. Berrange <berrange@redhat.com> - 3.9.0-1
-- Update to 3.9.0 release
-
-* Wed Oct  4 2017 Daniel P. Berrange <berrange@redhat.com> - 3.8.0-1
-- Update to 3.8.0 release
-
-* Mon Sep  4 2017 Daniel P. Berrange <berrange@redhat.com> - 3.7.0-1
-- Update to 3.7.0 release
-
-* Fri Aug 11 2017 Daniel P. Berrange <berrange@redhat.com> - 3.6.0-2
-- Rename sub-RPMs to python2-libvirt & python3-libvirt
-- Re-add py3 conditionals for benefit of RHEL/CentOS builds
-
-* Thu Aug 10 2017 Daniel P. Berrange <berrange@redhat.com> - 3.6.0-1
-- Update to 3.6.0 release
-- Always build py3 package
-
-* Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
-
-* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
-
-* Fri Jul 07 2017 Igor Gnatenko <ignatenko@redhat.com> - 3.5.0-2
-- Rebuild due to bug in RPM (RHBZ #1468476)
-
-* Thu Jul  6 2017 Daniel P. Berrange <berrange@redhat.com> - 3.5.0-1
-- Update to 3.5.0 release
-
-* Mon Jun  5 2017 Daniel P. Berrange <berrange@redhat.com> - 3.4.0-1
-- Update to 3.4.0 release
-
-* Mon May  8 2017 Daniel P. Berrange <berrange@redhat.com> - 3.3.0-1
-- Update to 3.3.0 release
-
-* Mon Apr  3 2017 Daniel P. Berrange <berrange@redhat.com> - 3.2.0-1
-- Update to 3.2.0 release
-
-* Fri Mar  3 2017 Daniel P. Berrange <berrange@redhat.com> - 3.1.0-1
-- Update to 3.1.0 release
-
-* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.0.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
-
-* Thu Jan 19 2017 Daniel P. Berrange <berrange@redhat.com> - 3.0.0-1
-- Update to 3.0.0 release
