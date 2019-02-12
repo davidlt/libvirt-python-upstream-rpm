@@ -122,7 +122,7 @@ exit 1
 CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
 %endif
 %if %{with_python3}
-CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
+%py3_build
 %endif
 
 %install
@@ -130,7 +130,7 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python3} setup.py build
 %{__python2} setup.py install --skip-build --root=%{buildroot}
 %endif
 %if %{with_python3}
-%{__python3} setup.py install --skip-build --root=%{buildroot}
+%py3_install
 %endif
 
 %check
