@@ -13,7 +13,7 @@
 %endif
 
 %define _with_python2 1
-%if 0%{?fedora} > 30 || 0%{?rhel} > 7
+%if 0%{?fedora} > 31 || 0%{?rhel} > 7
 %define _with_python2 0
 %endif
 
@@ -33,8 +33,8 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 5.0.0
-Release: 2%{?dist}%{?extra_release}
+Version: 5.1.0
+Release: 1%{?dist}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
@@ -167,6 +167,9 @@ CFLAGS="$RPM_OPT_FLAGS" %{__python2} setup.py build
 %endif
 
 %changelog
+* Mon Mar  4 2019 Daniel P. Berrangé <berrange@redhat.com> - 5.1.0-1
+- Update to 5.1.0 release
+
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 5.0.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
