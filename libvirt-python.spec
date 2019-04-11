@@ -33,12 +33,12 @@
 
 Summary: The libvirt virtualization API python2 binding
 Name: libvirt-python
-Version: 5.2.0
+Version: @LIBVIRTPYTHON_VERSION@
 Release: 1%{?dist}
 Source0: http://libvirt.org/sources/python/%{name}-%{version}.tar.gz
 Url: http://libvirt.org
 License: LGPLv2+
-BuildRequires: libvirt-devel == %{version}
+BuildRequires: libvirt-devel
 %if %{with_python2}
 %if %{py2_versioned_deps}
 BuildRequires: python2-devel
