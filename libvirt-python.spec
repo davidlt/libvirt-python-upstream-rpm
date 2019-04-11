@@ -107,6 +107,8 @@ of recent versions of Linux (and other OSes).
 %prep
 %setup -q
 
+touch ChangeLog AUTHORS
+
 # Unset execute bit for example scripts; it can introduce spurious
 # RPM dependencies, like /usr/bin/python which can pull in python2
 # for the -python3 package
